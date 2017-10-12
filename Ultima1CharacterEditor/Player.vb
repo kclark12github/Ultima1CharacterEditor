@@ -753,7 +753,7 @@
 #Region "Methods"
     Private Sub Backup()
         Dim fi As FileInfo = New FileInfo(mFileName)
-        Dim backup As String = fi.Name.Replace(".U1", String.Format(".{0:yyyyMMdd.HHmmssff}.U1", fi.LastWriteTime))
+        Dim backup As String = fi.Name.Replace(fi.Extension, String.Format(".{0:yyyyMMdd.HHmmssff}{1}", fi.LastWriteTime, fi.Extension))
         Dim backupPath As String = String.Format("{0}\{1}", fi.DirectoryName, backup)
         If Not FileIO.FileSystem.FileExists(backupPath) Then
             FileIO.FileSystem.RenameFile(mFileName, backup)
